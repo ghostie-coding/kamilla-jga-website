@@ -1,0 +1,46 @@
+/*
+ * Rest-CSS: nur das, was sich nicht als Tailwind-Utility-Klasse ausdrücken lässt.
+ * Das gesamte übrige Styling liegt als Inline-Utility-Klassen direkt in index.html.
+ */
+
+/* ── CUSTOM FONTS (Tailwind kann keine @font-face-Regeln erzeugen) ── */
+@font-face {
+  font-family: 'Telma-Light';
+  src: url('../assets/fonts/telma-light.otf') format('opentype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Telma-Regular';
+  src: url('../assets/fonts/telma-regular.otf') format('opentype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Telma-Medium';
+  src: url('../assets/fonts/telma-medium.otf') format('opentype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Telma-Bold';
+  src: url('../assets/fonts/telma-bold.otf') format('opentype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Telma-Black';
+  src: url('../assets/fonts/telma-black.otf') format('opentype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tanker-Regular';
+  src: url('../assets/fonts/tanker-regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+/* ── SCROLLBAR (kein Tailwind-Utility für ::-webkit-scrollbar) ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #f7f0eb; }
+::-webkit-scrollbar-thumb { background: #7a5a8a; }
+
+/* ── BARRIEREFREIHEIT: reduzierte Bewegung global abschalten ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
