@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+  command = ""
+
+# Optional: send unknown paths to the single page (site is a one-pager)
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200
