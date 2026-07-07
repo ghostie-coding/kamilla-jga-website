@@ -43,7 +43,7 @@ Visual style: dark brown/black backgrounds, lilac accents, cream serif headings;
 ### JavaScript
 `js/main.js` loads at end of `<body>` with `defer`. It's a flat script — IIFEs for self-contained features, plus global functions called from inline `onclick=`/`onkeydown=` in the HTML. Organized by `// ── SECTION ──` comment blocks. No modules, no bundler, no third-party libs.
 
-Feature blocks: **Puzzle gate**, surprise/boarding-pass overlay + petals, countdown, schedule unlock, nav scroll, day tabs, scroll fade-in (`IntersectionObserver`), password modal.
+Feature blocks: **Puzzle gate**, surprise/boarding-pass overlay + petals, countdown, schedule unlock, nav scroll, scroll fade-in (`IntersectionObserver`), password modal.
 
 ### Gating patterns (client-side only — not real auth)
 State is kept in **`sessionStorage`** (survives reload, clears when the tab/browser closes):

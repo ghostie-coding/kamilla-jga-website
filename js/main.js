@@ -158,14 +158,6 @@ window.addEventListener('scroll', () => {
   nav.classList.add(...(scrolled ? NAV_SCROLLED : NAV_DEFAULT));
 });
 
-// ── DAY TABS ──
-function showDay(id, btn) {
-  document.querySelectorAll('.day-content').forEach(d => d.classList.add('hidden'));
-  document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('bg-brown', 'text-cream'));
-  document.getElementById(id).classList.remove('hidden');
-  btn.classList.add('bg-brown', 'text-cream');
-}
-
 // ── SCROLL-EINBLEND-ANIMATION ──
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
