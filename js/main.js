@@ -1,3 +1,94 @@
+// ── PUZZLE GATE (Rätsel) ──
+// ANTALYA liegt diagonal von oben rechts (0,7) nach unten links (6,1).
+(function () {
+  const letters = [
+    ['S', 'E', 'L', 'R', 'O', 'D', 'I', 'A'],
+    ['U', 'B', 'R', 'F', 'S', 'E', 'N', 'K'],
+    ['G', 'P', 'D', 'S', 'P', 'T', 'O', 'L'],
+    ['X', 'H', 'N', 'S', 'A', 'L', 'Y', 'R'],
+    ['R', 'T', 'I', 'L', 'L', 'E', 'S', 'B'],
+    ['F', 'R', 'Y', 'N', 'B', 'S', 'T', 'V'],
+    ['C', 'A', 'P', 'L', 'E', 'S', 'N', 'E'],
+    ['T', 'O', 'S', 'T', 'I', 'O', 'R', 'C']
+  ];
+  // Diagonale Koordinaten: r steigt, c fällt (A-N-T-A-L-Y-A)
+  const targetWordCoords = [
+    { r: 0, c: 7 }, { r: 1, c: 6 }, { r: 2, c: 5 }, { r: 3, c: 4 },
+    { r: 4, c: 3 }, { r: 5, c: 2 }, { r: 6, c: 1 }
+  ];
+
+  const gate = document.getElementById('puzzle-gate');
+  const grid = document.getElementById('puzzle-grid');
+  const winMessage = document.getElementById('puzzle-win');
+  if (!gate || !grid) return;
+
+  const BASE = ['bg-white/5', 'border', 'border-white/10', 'text-cream'];
+  const CORRECT = ['bg-lilac-deep', 'text-white'];
+  const WRONG = ['bg-[#e56b6f]', 'text-white', 'animate-shake'];
+  const GLOW = ['bg-lilac', 'text-black', 'scale-110', 'shadow-[0_0_15px_#c0a8cc]', 'z-[1]'];
+
+  // Bereits in dieser Session gelöst? Gate sofort ausblenden (kein Flackern).
+  if (sessionStorage.getItem('puzzle-solved') === '1') {
+    gate.classList.add('hidden');
+  } else {
+    document.body.classList.add('overflow-hidden');
+  }
+
+  let foundCount = 0;
+  let solved = false;
+
+  for (let r = 0; r < letters.length; r++) {
+    for (let c = 0; c < letters[r].length; c++) {
+      const cell = document.createElement('div');
+      cell.className = 'aspect-square flex items-center justify-center rounded font-serif text-base md:text-lg font-bold cursor-pointer select-none transition-all duration-300 ' + BASE.join(' ');
+      cell.textContent = letters[r][c];
+      cell.dataset.r = r;
+      cell.dataset.c = c;
+      cell.addEventListener('click', () => handleClick(cell, r, c));
+      grid.appendChild(cell);
+    }
+  }
+
+  function handleClick(cell, r, c) {
+    if (solved || cell.classList.contains('is-correct')) return;
+
+    const expected = targetWordCoords[foundCount];
+    if (expected && r === expected.r && c === expected.c) {
+      cell.classList.remove(...WRONG, ...BASE);
+      cell.classList.add(...CORRECT, 'is-correct');
+      foundCount++;
+      if (foundCount === targetWordCoords.length) {
+        solved = true;
+        targetWordCoords.forEach(({ r, c }) => {
+          const el = grid.querySelector('[data-r="' + r + '"][data-c="' + c + '"]');
+          el.classList.remove(...CORRECT);
+          el.classList.add(...GLOW);
+        });
+        winMessage.classList.remove('opacity-0');
+        winMessage.classList.add('opacity-100');
+        setTimeout(() => {
+          gate.classList.add('opacity-0');
+          document.body.classList.remove('overflow-hidden');
+          sessionStorage.setItem('puzzle-solved', '1');
+          setTimeout(() => gate.classList.add('hidden'), 800);
+        }, 1200);
+      }
+    } else {
+      cell.classList.add(...WRONG);
+      setTimeout(() => cell.classList.remove(...WRONG), 400);
+      resetProgress();
+    }
+  }
+
+  function resetProgress() {
+    foundCount = 0;
+    grid.querySelectorAll('.is-correct').forEach(el => {
+      el.classList.remove(...CORRECT, 'is-correct');
+      el.classList.add(...BASE);
+    });
+  }
+})();
+
 // ── SURPRISE OVERLAY ──
 function tearTicket() {
   const ticketTop = document.getElementById('ticket-top');

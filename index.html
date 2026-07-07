@@ -60,6 +60,19 @@
 </head>
 <body class="font-sans bg-white text-black overflow-x-hidden">
 
+<!-- PUZZLE GATE (Rätsel – muss zuerst gelöst werden) -->
+<div id="puzzle-gate" class="fixed inset-0 z-[1000] bg-black flex items-center justify-center px-4 transition-opacity duration-[800ms]">
+  <div class="absolute inset-0 bg-[url('assets/img/flower.png')] bg-cover bg-center opacity-[0.12]"></div>
+  <div class="relative z-[2] bg-[#111] border border-[rgba(192,168,204,0.2)] rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.7)] text-center w-full max-w-[440px] px-6 py-10 md:px-10">
+    <div class="text-[0.62rem] tracking-[0.25em] uppercase text-lilac font-sans font-medium mb-2">Nur für das Bridesquad 🌸</div>
+    <h1 class="font-serif text-[2.4rem] italic text-cream leading-none mb-3">Kamillas JGA</h1>
+    <div class="text-[1.6rem] tracking-[0.35em] mb-5">🥂 💍 ✈️ 🌴</div>
+    <p class="text-[0.8rem] text-white/45 leading-relaxed mb-7">Finde unser Reiseziel! Es versteckt sich irgendwo im Gitter – tippe die Buchstaben in der richtigen Reihenfolge an.</p>
+    <div id="puzzle-grid" class="grid grid-cols-8 gap-1.5 md:gap-2 mx-auto max-w-[380px]"></div>
+    <div id="puzzle-win" class="mt-6 font-serif text-[1.3rem] italic text-lilac opacity-0 transition-opacity duration-[600ms] min-h-[1.6rem]">🌴 ANTALYA, wir kommen! 🌴</div>
+  </div>
+</div>
+
 <!-- PASSWORD MODAL -->
 <div class="pw-overlay fixed inset-0 z-[300] bg-[rgba(26,15,15,0.92)] backdrop-blur-md flex items-center justify-center opacity-0 invisible transition-opacity duration-300" id="pw-overlay">
   <div class="bg-black border border-[rgba(192,168,204,0.2)] text-center max-w-[380px] w-[90%] relative px-10 py-12">
