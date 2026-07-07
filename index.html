@@ -1,401 +1,824 @@
 <!DOCTYPE html>
 <html lang="de" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kamillas JGA 🌸</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          brown: '#3d1008',
-          'brown-mid': '#6b2010',
-          'brown-light': '#b8adb0',
-          cream: '#f7f0eb',
-          'cream-dark': '#ede3dc',
-          lilac: '#c0a8cc',
-          'lilac-deep': '#7a5a8a',
-          'lilac-soft': '#f0e8f5',
-          white: '#fdfbf9',
-          black: '#1a0f0f',
-        },
-        fontFamily: {
-          serif: ['"Cormorant Garamond"', 'serif'],
-          sans: ['Inter', 'sans-serif'],
-          telma: ['Telma-Regular', 'sans-serif'],
-          'telma-light': ['Telma-Light', 'sans-serif'],
-          'telma-medium': ['Telma-Medium', 'sans-serif'],
-          'telma-bold': ['Telma-Bold', 'sans-serif'],
-          'telma-black': ['Telma-Black', 'sans-serif'],
-          tanker: ['Tanker-Regular', 'sans-serif'],
-        },
-        keyframes: {
-          fall: {
-            '0%': { transform: 'translateY(-20px) rotate(0deg)', opacity: '0.7' },
-            '100%': { transform: 'translateY(110vh) rotate(720deg)', opacity: '0' },
-          },
-          herobounce: {
-            '0%, 100%': { transform: 'translateY(0)' },
-            '50%': { transform: 'translateY(6px)' },
-          },
-          shake: {
-            '0%, 100%': { transform: 'translateX(0)' },
-            '25%': { transform: 'translateX(-6px)' },
-            '75%': { transform: 'translateX(6px)' },
-          },
-        },
-        animation: {
-          fall: 'fall linear infinite',
-          herobounce: 'herobounce 2s infinite',
-          shake: 'shake 0.3s',
-        },
-      },
-    },
-  };
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamillas JGA 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Inter:wght@300;400;500;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brown: '#3d1008',
+                        'brown-mid': '#6b2010',
+                        'brown-light': '#b8adb0',
+                        cream: '#f7f0eb',
+                        'cream-dark': '#ede3dc',
+                        lilac: '#c0a8cc',
+                        'lilac-deep': '#7a5a8a',
+                        'lilac-soft': '#f0e8f5',
+                        white: '#fdfbf9',
+                        black: '#1a0f0f',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        telma: ['Telma-Regular', 'sans-serif'],
+                        'telma-light': ['Telma-Light', 'sans-serif'],
+                        'telma-medium': ['Telma-Medium', 'sans-serif'],
+                        'telma-bold': ['Telma-Bold', 'sans-serif'],
+                        'telma-black': ['Telma-Black', 'sans-serif'],
+                        tanker: ['Tanker-Regular', 'sans-serif'],
+                    },
+                    keyframes: {
+                        fall: {
+                            '0%': {transform: 'translateY(-20px) rotate(0deg)', opacity: '0.7'},
+                            '100%': {transform: 'translateY(110vh) rotate(720deg)', opacity: '0'},
+                        },
+                        herobounce: {
+                            '0%, 100%': {transform: 'translateY(0)'},
+                            '50%': {transform: 'translateY(6px)'},
+                        },
+                        shake: {
+                            '0%, 100%': {transform: 'translateX(0)'},
+                            '25%': {transform: 'translateX(-6px)'},
+                            '75%': {transform: 'translateX(6px)'},
+                        },
+                    },
+                    animation: {
+                        fall: 'fall linear infinite',
+                        herobounce: 'herobounce 2s infinite',
+                        shake: 'shake 0.3s',
+                    },
+                },
+            },
+        };
+    </script>
 </head>
 <body class="font-sans bg-white text-black overflow-x-hidden">
 
 <!-- PUZZLE GATE (Rätsel – muss zuerst gelöst werden) -->
-<div id="puzzle-gate" class="fixed inset-0 z-[1000] bg-black flex items-center justify-center px-4 transition-opacity duration-[800ms]">
-  <div class="absolute inset-0 bg-[url('assets/img/flower.png')] bg-cover bg-center opacity-[0.12]"></div>
-  <div class="relative z-[2] bg-[#111] border border-[rgba(192,168,204,0.2)] rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.7)] text-center w-full max-w-[440px] px-6 py-10 md:px-10">
-    <div class="text-[0.62rem] tracking-[0.25em] uppercase text-lilac font-sans font-medium mb-2">Nur für das Bridesquad 🌸</div>
-    <h1 class="font-serif text-[2.4rem] italic text-cream leading-none mb-3">Kamillas JGA</h1>
-    <div class="text-[1.6rem] tracking-[0.35em] mb-5">🥂 💍 ✈️ 🌴</div>
-    <p class="text-[0.8rem] text-white/45 leading-relaxed mb-7">Finde unser Reiseziel! Es versteckt sich irgendwo im Gitter – tippe die Buchstaben in der richtigen Reihenfolge an.</p>
-    <div id="puzzle-grid" class="grid grid-cols-8 gap-1.5 md:gap-2 mx-auto max-w-[380px]"></div>
-    <div id="puzzle-win" class="mt-6 font-serif text-[1.3rem] italic text-lilac opacity-0 transition-opacity duration-[600ms] min-h-[1.6rem]">🌴 ANTALYA, wir kommen! 🌴</div>
-  </div>
+<div id="puzzle-gate"
+     class="fixed inset-0 z-[1000] bg-black flex items-center justify-center px-4 transition-opacity duration-[800ms]">
+    <div class="absolute inset-0 bg-[url('assets/img/flower.png')] bg-cover bg-center opacity-[0.12]"></div>
+    <div class="relative z-[2] bg-[#111] border border-[rgba(192,168,204,0.2)] rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.7)] text-center w-full max-w-[440px] px-6 py-10 md:px-10">
+        <div class="text-[0.62rem] tracking-[0.25em] uppercase text-lilac font-sans font-medium mb-2">Nur für das
+            Bridesquad 🌸
+        </div>
+        <h1 class="font-serif text-[2.4rem] italic text-cream leading-none mb-3">Kamillas JGA</h1>
+        <div class="text-[1.6rem] tracking-[0.35em] mb-5">🥂 💍 ✈️ 🌴</div>
+        <p class="text-[0.8rem] text-white/45 leading-relaxed mb-7">Finde unser Reiseziel! Es versteckt sich irgendwo im
+            Gitter – tippe die Buchstaben in der richtigen Reihenfolge an.</p>
+        <div id="puzzle-grid" class="grid grid-cols-8 gap-1.5 md:gap-2 mx-auto max-w-[380px]"></div>
+        <div id="puzzle-win"
+             class="mt-6 font-serif text-[1.3rem] italic text-lilac opacity-0 transition-opacity duration-[600ms] min-h-[1.6rem]">
+            🌴 ANTALYA, wir kommen! 🌴
+        </div>
+    </div>
 </div>
 
 <!-- PASSWORD MODAL -->
-<div class="pw-overlay fixed inset-0 z-[300] bg-[rgba(26,15,15,0.92)] backdrop-blur-md flex items-center justify-center opacity-0 invisible transition-opacity duration-300" id="pw-overlay">
-  <div class="bg-black border border-[rgba(192,168,204,0.2)] text-center max-w-[380px] w-[90%] relative px-10 py-12">
-    <button class="absolute top-4 right-[1.2rem] bg-transparent border-0 text-white/30 text-[1.3rem] cursor-pointer leading-none hover:text-white" onclick="closePwModal()">✕</button>
-    <div class="font-serif text-[1.8rem] italic text-cream mb-[0.4rem]">Passwort</div>
-    <p class="text-xs text-white/35 tracking-[0.12em] mb-[1.8rem]">Nur für das Bridesquad 🌸</p>
-    <input class="w-full bg-white/5 border border-[rgba(192,168,204,0.25)] text-cream px-[1.2rem] py-[0.9rem] font-sans text-base tracking-[0.2em] text-center outline-none mb-4 transition-colors duration-200 focus:border-lilac"
-      id="pw-input" type="password" placeholder="••••" maxlength="10"
-      onkeydown="if(event.key==='Enter')checkPw()">
-    <button class="w-full bg-lilac-deep text-white border-0 py-[0.9rem] font-sans text-xs tracking-[0.18em] uppercase font-medium cursor-pointer transition-colors duration-200 hover:bg-brown-mid" onclick="checkPw()">Entsperren</button>
-    <div class="text-[0.72rem] text-[#e74c3c] mt-[0.6rem] min-h-[1rem]" id="pw-err"></div>
-  </div>
+<div class="pw-overlay fixed inset-0 z-[300] bg-[rgba(26,15,15,0.92)] backdrop-blur-md flex items-center justify-center opacity-0 invisible transition-opacity duration-300"
+     id="pw-overlay">
+    <div class="bg-black border border-[rgba(192,168,204,0.2)] text-center max-w-[380px] w-[90%] relative px-10 py-12">
+        <button class="absolute top-4 right-[1.2rem] bg-transparent border-0 text-white/30 text-[1.3rem] cursor-pointer leading-none hover:text-white"
+                onclick="closePwModal()">✕
+        </button>
+        <div class="font-serif text-[1.8rem] italic text-cream mb-[0.4rem]">Passwort</div>
+        <p class="text-xs text-white/35 tracking-[0.12em] mb-[1.8rem]">Nur für das Bridesquad 🌸</p>
+        <input class="w-full bg-white/5 border border-[rgba(192,168,204,0.25)] text-cream px-[1.2rem] py-[0.9rem] font-sans text-base tracking-[0.2em] text-center outline-none mb-4 transition-colors duration-200 focus:border-lilac"
+               id="pw-input" type="password" placeholder="••••" maxlength="10"
+               onkeydown="if(event.key==='Enter')checkPw()">
+        <button class="w-full bg-lilac-deep text-white border-0 py-[0.9rem] font-sans text-xs tracking-[0.18em] uppercase font-medium cursor-pointer transition-colors duration-200 hover:bg-brown-mid"
+                onclick="checkPw()">Entsperren
+        </button>
+        <div class="text-[0.72rem] text-[#e74c3c] mt-[0.6rem] min-h-[1rem]" id="pw-err"></div>
+    </div>
 </div>
 
 <!-- SURPRISE OVERLAY (nur beim ersten Besuch) -->
-<div id="surprise-overlay" class="fixed inset-0 z-[999] bg-black flex flex-col items-center justify-center cursor-pointer transition-opacity duration-[800ms]">
-  <div class="absolute inset-0 bg-[url('assets/img/flower.png')] bg-cover bg-center opacity-[0.12]"></div>
-  <div class="absolute inset-0 pointer-events-none overflow-hidden" id="petals"></div>
+<div id="surprise-overlay"
+     class="fixed inset-0 z-[999] bg-black flex flex-col items-center justify-center cursor-pointer transition-opacity duration-[800ms]">
+    <div class="absolute inset-0 bg-[url('assets/img/flower.png')] bg-cover bg-center opacity-[0.12]"></div>
+    <div class="absolute inset-0 pointer-events-none overflow-hidden" id="petals"></div>
 
-  <div class="relative z-[2] [perspective:1000px] md:[perspective:1200px] cursor-pointer" id="ticket-wrap">
-    <div class="w-[min(90vw,360px)] md:w-[440px] bg-[#111] rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden relative origin-top transition-transform duration-150 ease-in-out hover:scale-[1.02]" id="ticket">
-      <!-- TOP HALF -->
-      <div class="origin-top transition-[transform,opacity] duration-[600ms] ease-[cubic-bezier(0.4,0,0.2,1)]" id="ticket-top">
-        <div class="bg-black border-b border-white/[0.08] px-6 pt-[1.2rem] pb-4 flex items-center justify-between">
-          <div>
-            <div class="hidden">Kamilla's JGA </div>
-            <div class="text-[0.62rem] tracking-[0.2em] uppercase text-lilac font-sans font-medium">Boarding Pass · First Class</div>
-          </div>
-          <div class="hidden"></div>
-        </div>
-        <div class="px-6 py-[1.2rem] flex items-center gap-[0.8rem] bg-[#111]">
-          <div class="flex-1">
-            <div class="font-serif text-[2.4rem] font-bold text-white leading-none">DUS</div>
-            <div class="text-[0.65rem] tracking-[0.12em] uppercase text-white/45 mt-[0.2rem]">Düsseldorf</div>
-          </div>
-          <div class="flex flex-col items-center gap-[0.2rem] flex-none">
-            <div class="w-[60px] h-px bg-white/20 relative after:content-['✈'] after:absolute after:-top-2 after:left-1/2 after:-translate-x-1/2 after:text-[0.9rem] after:text-lilac"></div>
-          </div>
-          <div class="flex-1 text-right">
-            <div class="font-serif text-[2.4rem] font-bold text-white leading-none" style="letter-spacing:0.1em">JGA</div>
-            <div class="text-[0.65rem] tracking-[0.12em] uppercase text-white/45 mt-[0.2rem]" style="letter-spacing:0.08em">Ziel </div>
-          </div>
-        </div>
-        <div class="grid grid-cols-3 px-6 py-[0.8rem] bg-[#0a0a0a] gap-2 border-t border-white/[0.06]">
-          <div>
-            <label class="block text-[0.55rem] tracking-[0.15em] uppercase text-white/35 font-sans">Passagier</label>
-            <span class="font-serif text-base font-semibold text-white">Kamilla</span>
-          </div>
-          <div>
-            <label class="block text-[0.55rem] tracking-[0.15em] uppercase text-white/35 font-sans">Datum</label>
-            <span class="font-serif text-base font-semibold text-white">10. Juli</span>
-          </div>
-          <div>
-            <label class="block text-[0.55rem] tracking-[0.15em] uppercase text-white/35 font-sans">Klasse</label>
-            <span class="font-serif text-base font-semibold text-white">Bride </span>
-          </div>
-        </div>
-      </div>
+    <div class="relative z-[2] [perspective:1000px] md:[perspective:1200px] cursor-pointer" id="ticket-wrap">
+        <div class="w-[min(90vw,360px)] md:w-[440px] bg-[#111] rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden relative origin-top transition-transform duration-150 ease-in-out hover:scale-[1.02]"
+             id="ticket">
+            <!-- TOP HALF -->
+            <div class="origin-top transition-[transform,opacity] duration-[600ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+                 id="ticket-top">
+                <div class="bg-black border-b border-white/[0.08] px-6 pt-[1.2rem] pb-4 flex items-center justify-between">
+                    <div>
+                        <div class="hidden">Kamilla's JGA</div>
+                        <div class="text-[0.62rem] tracking-[0.2em] uppercase text-lilac font-sans font-medium">Boarding
+                            Pass · First Class
+                        </div>
+                    </div>
+                    <div class="hidden"></div>
+                </div>
+                <div class="px-6 py-[1.2rem] flex items-center gap-[0.8rem] bg-[#111]">
+                    <div class="flex-1">
+                        <div class="font-serif text-[2.4rem] font-bold text-white leading-none">DUS</div>
+                        <div class="text-[0.65rem] tracking-[0.12em] uppercase text-white/45 mt-[0.2rem]">Düsseldorf
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center gap-[0.2rem] flex-none">
+                        <div class="w-[60px] h-px bg-white/20 relative after:content-['✈'] after:absolute after:-top-2 after:left-1/2 after:-translate-x-1/2 after:text-[0.9rem] after:text-lilac"></div>
+                    </div>
+                    <div class="flex-1 text-right">
+                        <div class="font-serif text-[2.4rem] font-bold text-white leading-none"
+                             style="letter-spacing:0.1em">JGA
+                        </div>
+                        <div class="text-[0.65rem] tracking-[0.12em] uppercase text-white/45 mt-[0.2rem]"
+                             style="letter-spacing:0.08em">Ziel
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 px-6 py-[0.8rem] bg-[#0a0a0a] gap-2 border-t border-white/[0.06]">
+                    <div>
+                        <label class="block text-[0.55rem] tracking-[0.15em] uppercase text-white/35 font-sans">Passagier</label>
+                        <span class="font-serif text-base font-semibold text-white">Kamilla</span>
+                    </div>
+                    <div>
+                        <label class="block text-[0.55rem] tracking-[0.15em] uppercase text-white/35 font-sans">Datum</label>
+                        <span class="font-serif text-base font-semibold text-white">10. Juli</span>
+                    </div>
+                    <div>
+                        <label class="block text-[0.55rem] tracking-[0.15em] uppercase text-white/35 font-sans">Klasse</label>
+                        <span class="font-serif text-base font-semibold text-white">Bride </span>
+                    </div>
+                </div>
+            </div>
 
-      <!-- TEAR LINE -->
-      <div class="relative p-0 flex items-center before:content-[''] before:absolute before:w-5 before:h-5 before:rounded-full before:bg-black before:top-1/2 before:-translate-y-1/2 before:z-[3] before:-left-2.5 after:content-[''] after:absolute after:w-5 after:h-5 after:rounded-full after:bg-black after:top-1/2 after:-translate-y-1/2 after:z-[3] after:-right-2.5">
-        <div class="w-full border-t-2 border-dashed border-[rgba(61,16,8,0.25)] mx-[14px]"></div>
-      </div>
+            <!-- TEAR LINE -->
+            <div class="relative p-0 flex items-center before:content-[''] before:absolute before:w-5 before:h-5 before:rounded-full before:bg-black before:top-1/2 before:-translate-y-1/2 before:z-[3] before:-left-2.5 after:content-[''] after:absolute after:w-5 after:h-5 after:rounded-full after:bg-black after:top-1/2 after:-translate-y-1/2 after:z-[3] after:-right-2.5">
+                <div class="w-full border-t-2 border-dashed border-[rgba(61,16,8,0.25)] mx-[14px]"></div>
+            </div>
 
-      <!-- BOTTOM STUB -->
-      <div class="origin-top transition-[transform,opacity] duration-[600ms] ease-[cubic-bezier(0.4,0,0.2,1)] delay-100" id="ticket-bottom">
-        <div class="px-6 py-4 bg-[#111] border-t border-white/[0.06] flex justify-between items-center">
-          <div class="font-serif text-[1.1rem] italic text-white/70"> Abreißen &amp; loslegen</div>
-          <div class="flex gap-0.5 items-end h-8">
-            <span class="block bg-white/40 w-[3px]" style="height:28px"></span><span class="block bg-white/40 w-[3px]" style="height:20px"></span>
-            <span class="block bg-white/40 w-[3px]" style="height:32px"></span><span class="block bg-white/40 w-[3px]" style="height:16px"></span>
-            <span class="block bg-white/40 w-[3px]" style="height:28px"></span><span class="block bg-white/40 w-[3px]" style="height:24px"></span>
-            <span class="block bg-white/40 w-[3px]" style="height:32px"></span><span class="block bg-white/40 w-[3px]" style="height:18px"></span>
-            <span class="block bg-white/40 w-[3px]" style="height:26px"></span><span class="block bg-white/40 w-[3px]" style="height:32px"></span>
-          </div>
+            <!-- BOTTOM STUB -->
+            <div class="origin-top transition-[transform,opacity] duration-[600ms] ease-[cubic-bezier(0.4,0,0.2,1)] delay-100"
+                 id="ticket-bottom">
+                <div class="px-6 py-4 bg-[#111] border-t border-white/[0.06] flex justify-between items-center">
+                    <div class="font-serif text-[1.1rem] italic text-white/70"> Abreißen &amp; loslegen</div>
+                    <div class="flex gap-0.5 items-end h-8">
+                        <span class="block bg-white/40 w-[3px]" style="height:28px"></span><span
+                            class="block bg-white/40 w-[3px]" style="height:20px"></span>
+                        <span class="block bg-white/40 w-[3px]" style="height:32px"></span><span
+                            class="block bg-white/40 w-[3px]" style="height:16px"></span>
+                        <span class="block bg-white/40 w-[3px]" style="height:28px"></span><span
+                            class="block bg-white/40 w-[3px]" style="height:24px"></span>
+                        <span class="block bg-white/40 w-[3px]" style="height:32px"></span><span
+                            class="block bg-white/40 w-[3px]" style="height:18px"></span>
+                        <span class="block bg-white/40 w-[3px]" style="height:26px"></span><span
+                            class="block bg-white/40 w-[3px]" style="height:32px"></span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <div class="mt-8 text-center relative z-[2]">
-    <button class="inline-block border border-[rgba(192,168,204,0.6)] text-lilac px-[2.2rem] py-[0.85rem] text-[0.72rem] tracking-[0.22em] uppercase font-medium bg-transparent cursor-pointer font-sans transition-all duration-300 relative overflow-hidden hover:bg-lilac hover:text-black" onclick="tearTicket()">Ich bin bereit </button>
-    <div class="mt-[0.6rem] text-[0.65rem] text-white/25 tracking-[0.15em] uppercase">Tippe um das Abenteuer zu starten</div>
-  </div>
+    <div class="mt-8 text-center relative z-[2]">
+        <button class="inline-block border border-[rgba(192,168,204,0.6)] text-lilac px-[2.2rem] py-[0.85rem] text-[0.72rem] tracking-[0.22em] uppercase font-medium bg-transparent cursor-pointer font-sans transition-all duration-300 relative overflow-hidden hover:bg-lilac hover:text-black"
+                onclick="tearTicket()">Ich bin bereit
+        </button>
+        <div class="mt-[0.6rem] text-[0.65rem] text-white/25 tracking-[0.15em] uppercase">Tippe um das Abenteuer zu
+            starten
+        </div>
+    </div>
 </div>
 
 <!-- NAV -->
-<nav id="mainnav" class="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between gap-2 transition-[background,padding] duration-[400ms] px-[0.8rem] md:px-12 bg-[rgba(26,15,15,0.92)] md:bg-[rgba(26,15,15,0)] backdrop-blur-[10px] py-[0.6rem] md:py-[1.2rem]">
-  <div><img src="assets/img/logo-nav.png" alt="Kamilla's JGA" class="h-7 md:h-11 w-auto block [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.4))]"></div>
-  <div class="flex gap-[0.6rem] md:gap-8 flex-shrink-0">
-    <a href="#squad" class="text-white/80 no-underline text-[0.55rem] md:text-[0.72rem] tracking-[0.06em] md:tracking-[0.18em] uppercase font-medium transition-colors duration-200 hover:text-lilac">Squad</a>
-    <a href="#zeitplan-locked" class="text-white/80 no-underline text-[0.55rem] md:text-[0.72rem] tracking-[0.06em] md:tracking-[0.18em] uppercase font-medium transition-colors duration-200 hover:text-lilac">Zeitplan</a>
-    <a href="#memories" class="text-white/80 no-underline text-[0.55rem] md:text-[0.72rem] tracking-[0.06em] md:tracking-[0.18em] uppercase font-medium transition-colors duration-200 hover:text-lilac">Erinnerungen</a>
-    <a href="#spiele" class="text-white/80 no-underline text-[0.55rem] md:text-[0.72rem] tracking-[0.06em] md:tracking-[0.18em] uppercase font-medium transition-colors duration-200 hover:text-lilac">Spiele</a>
-  </div>
+<nav id="mainnav"
+     class="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between gap-2 transition-[background,padding] duration-[400ms] px-[0.8rem] md:px-12 bg-[rgba(26,15,15,0.92)] md:bg-[rgba(26,15,15,0)] backdrop-blur-[10px] py-[0.6rem] md:py-[1.2rem]">
+    <div><img src="assets/img/logo-nav.png" alt="Kamilla's JGA"
+              class="h-7 md:h-11 w-auto block [filter:drop-shadow(0_1px_4px_rgba(0,0,0,0.4))]"></div>
+    <div class="flex gap-[0.6rem] md:gap-8 flex-shrink-0">
+        <a href="#squad"
+           class="text-white/80 no-underline text-[0.55rem] md:text-[0.72rem] tracking-[0.06em] md:tracking-[0.18em] uppercase font-medium transition-colors duration-200 hover:text-lilac">Squad</a>
+        <a href="#zeitplan-locked"
+           class="text-white/80 no-underline text-[0.55rem] md:text-[0.72rem] tracking-[0.06em] md:tracking-[0.18em] uppercase font-medium transition-colors duration-200 hover:text-lilac">Zeitplan</a>
+        <a href="#memories"
+           class="text-white/80 no-underline text-[0.55rem] md:text-[0.72rem] tracking-[0.06em] md:tracking-[0.18em] uppercase font-medium transition-colors duration-200 hover:text-lilac">Erinnerungen</a>
+        <a href="#spiele"
+           class="text-white/80 no-underline text-[0.55rem] md:text-[0.72rem] tracking-[0.06em] md:tracking-[0.18em] uppercase font-medium transition-colors duration-200 hover:text-lilac">Spiele</a>
+    </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero" class="h-screen relative flex items-end overflow-hidden">
-  <div class="absolute inset-0 bg-[url('assets/img/stripe.png')] bg-[length:100vw_auto] bg-top"></div>
-  <div class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(61,16,8,0.05)_0%,rgba(61,16,8,0)_45%,rgba(61,16,8,0.55)_100%)]"></div>
-  <div class="relative z-[2] px-6 py-12 w-full max-w-[1100px] mx-auto md:px-24 md:py-16 md:flex md:flex-col md:items-start md:justify-end md:h-full">
-    <div class="inline-block text-[0.68rem] tracking-[0.35em] uppercase text-lilac-deep font-semibold mb-[1.2rem] bg-white/[0.82] border-0 px-[0.9rem] py-[0.35rem] rounded-[20px]">Junggesellinnenabschied 2026</div>
-    <h1 class="font-serif text-[clamp(4rem,10vw,9rem)] font-bold leading-[0.88] text-white tracking-[-0.02em] mb-6">
-      <em class="italic font-light text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.6),0_0_40px_rgba(0,0,0,0.4)]">für</em><br>
-      <img src="assets/img/hero-name.png" alt="Kamilla" class="block max-w-[min(90vw,700px)] md:max-w-[min(70vw,600px)] w-full h-auto mt-2 [filter:drop-shadow(0_12px_30px_rgba(0,0,0,0.35))]">
-    </h1>
-    <div class="flex items-center gap-8 flex-wrap">
-      <span class="text-lilac-deep text-[0.78rem] tracking-[0.12em] uppercase bg-white/[0.78] px-[0.7rem] py-[0.2rem] rounded-[20px] font-medium">🌸 Mit viel Liebe organisiert</span>
-      <span class="text-lilac-deep text-[0.78rem] tracking-[0.12em] uppercase bg-white/[0.78] px-[0.7rem] py-[0.2rem] rounded-[20px] font-medium">— Diana &amp; Ece</span>
+    <div class="absolute inset-0 bg-[url('assets/img/stripe.png')] bg-[length:100vw_auto] bg-top"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(61,16,8,0.05)_0%,rgba(61,16,8,0)_45%,rgba(61,16,8,0.55)_100%)]"></div>
+    <div class="relative z-[2] px-6 py-12 w-full max-w-[1100px] mx-auto md:px-24 md:py-16 md:flex md:flex-col md:items-start md:justify-end md:h-full">
+        <div class="inline-block text-[0.68rem] tracking-[0.35em] uppercase text-lilac-deep font-semibold mb-[1.2rem] bg-white/[0.82] border-0 px-[0.9rem] py-[0.35rem] rounded-[20px]">
+            Junggesellinnenabschied 2026
+        </div>
+        <h1 class="font-serif text-[clamp(4rem,10vw,9rem)] font-bold leading-[0.88] text-white tracking-[-0.02em] mb-6">
+            <em class="italic font-light text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.6),0_0_40px_rgba(0,0,0,0.4)]">für</em><br>
+            <img src="assets/img/hero-name.png" alt="Kamilla"
+                 class="block max-w-[min(90vw,700px)] md:max-w-[min(70vw,600px)] w-full h-auto mt-2 [filter:drop-shadow(0_12px_30px_rgba(0,0,0,0.35))]">
+        </h1>
+        <div class="flex items-center gap-8 flex-wrap">
+            <span class="text-lilac-deep text-[0.78rem] tracking-[0.12em] uppercase bg-white/[0.78] px-[0.7rem] py-[0.2rem] rounded-[20px] font-medium">🌸 Mit viel Liebe organisiert</span>
+            <span class="text-lilac-deep text-[0.78rem] tracking-[0.12em] uppercase bg-white/[0.78] px-[0.7rem] py-[0.2rem] rounded-[20px] font-medium">— Diana &amp; Ece</span>
+        </div>
     </div>
-  </div>
-  <div class="absolute bottom-10 right-12 z-[2] flex flex-col items-center gap-2 text-white/40 text-[0.65rem] tracking-[0.2em] uppercase animate-herobounce after:content-['↓'] after:text-[1.1rem]">Scroll</div>
+    <div class="absolute bottom-10 right-12 z-[2] flex flex-col items-center gap-2 text-white/40 text-[0.65rem] tracking-[0.2em] uppercase animate-herobounce after:content-['↓'] after:text-[1.1rem]">
+        Scroll
+    </div>
 </section>
 
 <!-- COUNTDOWN STRIP -->
 <div id="countdown-strip" class="bg-black px-6 py-8 md:px-12 md:py-10">
-  <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 flex-wrap text-center md:text-left">
-    <div class="font-serif text-[1.4rem] italic text-cream">Noch bis zum großen Abenteuer</div>
-    <div class="flex flex-wrap justify-center gap-1 md:gap-2 items-center" id="countdown">
-      <div class="text-center min-w-[54px] md:min-w-[70px]"><div class="font-serif text-[2.1rem] md:text-[3.2rem] font-semibold leading-none text-lilac" id="cd-days">--</div><div class="text-[0.5rem] md:text-[0.6rem] tracking-[0.1em] md:tracking-[0.25em] uppercase text-white/35 mt-[0.2rem]">Tage</div></div>
-      <div class="text-[1.5rem] md:text-[2.5rem] text-white/15 pb-1 md:pb-2">:</div>
-      <div class="text-center min-w-[54px] md:min-w-[70px]"><div class="font-serif text-[2.1rem] md:text-[3.2rem] font-semibold leading-none text-lilac" id="cd-hours">--</div><div class="text-[0.5rem] md:text-[0.6rem] tracking-[0.1em] md:tracking-[0.25em] uppercase text-white/35 mt-[0.2rem]">Stunden</div></div>
-      <div class="text-[1.5rem] md:text-[2.5rem] text-white/15 pb-1 md:pb-2">:</div>
-      <div class="text-center min-w-[54px] md:min-w-[70px]"><div class="font-serif text-[2.1rem] md:text-[3.2rem] font-semibold leading-none text-lilac" id="cd-mins">--</div><div class="text-[0.5rem] md:text-[0.6rem] tracking-[0.1em] md:tracking-[0.25em] uppercase text-white/35 mt-[0.2rem]">Minuten</div></div>
-      <div class="text-[1.5rem] md:text-[2.5rem] text-white/15 pb-1 md:pb-2">:</div>
-      <div class="text-center min-w-[54px] md:min-w-[70px]"><div class="font-serif text-[2.1rem] md:text-[3.2rem] font-semibold leading-none text-lilac" id="cd-secs">--</div><div class="text-[0.5rem] md:text-[0.6rem] tracking-[0.1em] md:tracking-[0.25em] uppercase text-white/35 mt-[0.2rem]">Sekunden</div></div>
+    <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 flex-wrap text-center md:text-left">
+        <div class="font-serif text-[1.4rem] italic text-cream">Noch bis zum großen Abenteuer</div>
+        <div class="flex flex-wrap justify-center gap-1 md:gap-2 items-center" id="countdown">
+            <div class="text-center min-w-[54px] md:min-w-[70px]">
+                <div class="font-serif text-[2.1rem] md:text-[3.2rem] font-semibold leading-none text-lilac"
+                     id="cd-days">--
+                </div>
+                <div class="text-[0.5rem] md:text-[0.6rem] tracking-[0.1em] md:tracking-[0.25em] uppercase text-white/35 mt-[0.2rem]">
+                    Tage
+                </div>
+            </div>
+            <div class="text-[1.5rem] md:text-[2.5rem] text-white/15 pb-1 md:pb-2">:</div>
+            <div class="text-center min-w-[54px] md:min-w-[70px]">
+                <div class="font-serif text-[2.1rem] md:text-[3.2rem] font-semibold leading-none text-lilac"
+                     id="cd-hours">--
+                </div>
+                <div class="text-[0.5rem] md:text-[0.6rem] tracking-[0.1em] md:tracking-[0.25em] uppercase text-white/35 mt-[0.2rem]">
+                    Stunden
+                </div>
+            </div>
+            <div class="text-[1.5rem] md:text-[2.5rem] text-white/15 pb-1 md:pb-2">:</div>
+            <div class="text-center min-w-[54px] md:min-w-[70px]">
+                <div class="font-serif text-[2.1rem] md:text-[3.2rem] font-semibold leading-none text-lilac"
+                     id="cd-mins">--
+                </div>
+                <div class="text-[0.5rem] md:text-[0.6rem] tracking-[0.1em] md:tracking-[0.25em] uppercase text-white/35 mt-[0.2rem]">
+                    Minuten
+                </div>
+            </div>
+            <div class="text-[1.5rem] md:text-[2.5rem] text-white/15 pb-1 md:pb-2">:</div>
+            <div class="text-center min-w-[54px] md:min-w-[70px]">
+                <div class="font-serif text-[2.1rem] md:text-[3.2rem] font-semibold leading-none text-lilac"
+                     id="cd-secs">--
+                </div>
+                <div class="text-[0.5rem] md:text-[0.6rem] tracking-[0.1em] md:tracking-[0.25em] uppercase text-white/35 mt-[0.2rem]">
+                    Sekunden
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- BRIDESQUAD -->
 <section id="squad" class="relative overflow-hidden px-6 py-16 md:px-16 md:py-24">
-  <div class="absolute inset-0 bg-[url('assets/img/stripe.png')] bg-[length:100vw_auto] bg-top pointer-events-none"></div>
-  <div class="relative max-w-[1100px] mx-auto">
-    <p class="text-[0.68rem] tracking-[0.35em] uppercase mb-[0.6rem] font-medium !text-white bg-black/50 inline-block px-4 py-[0.3rem] rounded-[20px] font-bold">Die Crew</p>
-    <h2 class="font-serif text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.02em] mb-14 !text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.95),0_4px_24px_rgba(0,0,0,0.85)]">Bride<em class="italic font-light !text-lilac">squad</em> 💜</h2>
-    <div class="flex flex-wrap gap-6 justify-start">
-      <div class="flex flex-col items-center gap-3 cursor-default">
-        <div class="w-[108px] h-[108px] md:w-[130px] md:h-[130px] rounded-full flex items-center justify-center font-serif text-[1.9rem] md:text-[2rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac-deep p-0"><img src="assets/img/squad-kamilla.jpg" alt="Kamilla" class="w-full h-full object-cover object-[center_top] rounded-full"></div>
-        <div class="text-[1.4rem] -mb-[0.6rem] mt-0 leading-none order-[-1]">👑</div>
-        <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Kamilla</span>
-        <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">The Bride</span>
-      </div>
-      <div class="flex flex-col items-center gap-3 cursor-default">
-        <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0"><img src="assets/img/squad-diana.jpg" alt="Diana" class="w-full h-full object-cover object-[center_top] rounded-full"></div>
-        <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Diana</span>
-        <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Maid of Honor</span>
-      </div>
-      <div class="flex flex-col items-center gap-3 cursor-default">
-        <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0"><img src="assets/img/squad-ece.jpg" alt="Ece" class="w-full h-full object-cover object-[center_top] rounded-full"></div>
-        <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Ece</span>
-        <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Chief Bridesmaid</span>
-      </div>
-      <div class="flex flex-col items-center gap-3 cursor-default">
-        <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0"><img src="assets/img/squad-elif.jpg" alt="Elif" class="w-full h-full object-cover object-[center_top] rounded-full"></div>
-        <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Elif</span>
-        <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Bridesmaid</span>
-      </div>
-      <div class="flex flex-col items-center gap-3 cursor-default">
-        <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0"><img src="assets/img/squad-elfi.jpg" alt="Elfi" class="w-full h-full object-cover object-[center_top] rounded-full"></div>
-        <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Elfi</span>
-        <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Bridesmaid</span>
-      </div>
-      <div class="flex flex-col items-center gap-3 cursor-default">
-        <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0"><img src="assets/img/squad-erva.jpg" alt="Erva" class="w-full h-full object-cover object-[center_top] rounded-full"></div>
-        <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Erva</span>
-        <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Bridesmaid</span>
-      </div>
-      <div class="flex flex-col items-center gap-3 cursor-default">
-        <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0"><img src="assets/img/squad-hilal.jpg" alt="Hilal" class="w-full h-full object-cover object-[center_top] rounded-full"></div>
-        <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Hilal</span>
-        <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Bridesmaid</span>
-      </div>
-      <div class="flex flex-col items-center gap-3 cursor-default">
-        <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0"><img src="assets/img/squad-reyhan.jpg" alt="Reyhan" class="w-full h-full object-cover object-[center_top] rounded-full"></div>
-        <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Reyhan</span>
-        <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Bridesmaid</span>
-      </div>
+    <div class="absolute inset-0 bg-[url('assets/img/stripe.png')] bg-[length:100vw_auto] bg-top pointer-events-none"></div>
+    <div class="relative max-w-[1100px] mx-auto">
+        <p class="text-[0.68rem] tracking-[0.35em] uppercase mb-[0.6rem] font-medium !text-white bg-black/50 inline-block px-4 py-[0.3rem] rounded-[20px] font-bold">
+            Die Crew</p>
+        <h2 class="font-serif text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.02em] mb-14 !text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.95),0_4px_24px_rgba(0,0,0,0.85)]">
+            Bride<em class="italic font-light !text-lilac">squad</em> 💜</h2>
+        <div class="flex flex-wrap gap-6 justify-start">
+            <div class="flex flex-col items-center gap-3 cursor-default">
+                <div class="w-[108px] h-[108px] md:w-[130px] md:h-[130px] rounded-full flex items-center justify-center font-serif text-[1.9rem] md:text-[2rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac-deep p-0">
+                    <img src="assets/img/squad-kamilla.jpg" alt="Kamilla"
+                         class="w-full h-full object-cover object-[center_top] rounded-full"></div>
+                <div class="text-[1.4rem] -mb-[0.6rem] mt-0 leading-none order-[-1]">👑</div>
+                <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Kamilla</span>
+                <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">The Bride</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 cursor-default">
+                <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0">
+                    <img src="assets/img/squad-diana.jpg" alt="Diana"
+                         class="w-full h-full object-cover object-[center_top] rounded-full"></div>
+                <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Diana</span>
+                <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Maid of Honor</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 cursor-default">
+                <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0">
+                    <img src="assets/img/squad-ece.jpg" alt="Ece"
+                         class="w-full h-full object-cover object-[center_top] rounded-full"></div>
+                <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Ece</span>
+                <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Chief Bridesmaid</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 cursor-default">
+                <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0">
+                    <img src="assets/img/squad-elif.jpg" alt="Elif"
+                         class="w-full h-full object-cover object-[center_top] rounded-full"></div>
+                <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Elif</span>
+                <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Bridesmaid</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 cursor-default">
+                <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0">
+                    <img src="assets/img/squad-elfi.jpg" alt="Elfi"
+                         class="w-full h-full object-cover object-[center_top] rounded-full"></div>
+                <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Elfi</span>
+                <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Bridesmaid</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 cursor-default">
+                <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0">
+                    <img src="assets/img/squad-erva.jpg" alt="Erva"
+                         class="w-full h-full object-cover object-[center_top] rounded-full"></div>
+                <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Erva</span>
+                <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Bridesmaid</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 cursor-default">
+                <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0">
+                    <img src="assets/img/squad-hilal.jpg" alt="Hilal"
+                         class="w-full h-full object-cover object-[center_top] rounded-full"></div>
+                <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Hilal</span>
+                <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Bridesmaid</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 cursor-default">
+                <div class="w-[88px] h-[88px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center font-serif text-[1.6rem] md:text-[1.8rem] font-bold relative overflow-hidden transition-[transform,box-shadow] duration-[250ms] hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(122,90,138,0.25)] border-[2.5px] border-lilac p-0">
+                    <img src="assets/img/squad-reyhan.jpg" alt="Reyhan"
+                         class="w-full h-full object-cover object-[center_top] rounded-full"></div>
+                <span class="text-[0.72rem] tracking-[0.14em] uppercase font-bold text-lilac-deep [text-shadow:none] bg-white/[0.82] px-[0.55rem] py-[0.15rem] rounded-[20px]">Reyhan</span>
+                <span class="text-[0.65rem] text-lilac-deep italic [text-shadow:none] bg-white/70 px-[0.45rem] py-[0.1rem] rounded-[20px]">Bridesmaid</span>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <!-- ZEITPLAN + SPIELE: LOCKED (vor 13.07.26) -->
 <section id="zeitplan-locked" class="bg-black px-6 py-16 md:px-16 md:py-24 text-center">
-  <div class="max-w-[600px] mx-auto">
-    <div class="text-5xl mb-6 opacity-60">🔒</div>
-    <h2 class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out font-serif text-[clamp(2rem,5vw,3.5rem)] font-semibold italic text-cream mb-4">Zeitplan &amp; Spiele<br>noch geheim…</h2>
-    <p class="text-[0.85rem] text-white/40 leading-[1.7] tracking-[0.04em] mb-10"> Der komplette Ablauf und die Aktivitäten<br>werden automatisch nach der Reise enthüllt.</p>
-    <div class="inline-block font-serif text-[1.8rem] italic text-lilac border-t border-b border-[rgba(192,168,204,0.3)] px-8 py-[0.6rem]">13. Juli 2026</div>
-    <br><br>
-    <button class="inline-block mt-8 bg-transparent border border-[rgba(192,168,204,0.35)] text-lilac px-8 py-3 font-sans text-[0.72rem] tracking-[0.18em] uppercase cursor-pointer transition-all duration-200 hover:bg-lilac-deep hover:text-white hover:border-lilac-deep" onclick="openPwModal()">🔑 Passwort eingeben</button>
-  </div>
+    <div class="max-w-[600px] mx-auto">
+        <div class="text-5xl mb-6 opacity-60">🔒</div>
+        <h2 class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out font-serif text-[clamp(2rem,5vw,3.5rem)] font-semibold italic text-cream mb-4">
+            Zeitplan &amp; Spiele<br>noch geheim…</h2>
+        <p class="text-[0.85rem] text-white/40 leading-[1.7] tracking-[0.04em] mb-10"> Der komplette Ablauf und die
+            Aktivitäten<br>werden automatisch nach der Reise enthüllt.</p>
+        <div class="inline-block font-serif text-[1.8rem] italic text-lilac border-t border-b border-[rgba(192,168,204,0.3)] px-8 py-[0.6rem]">
+            13. Juli 2026
+        </div>
+        <br><br>
+        <button class="inline-block mt-8 bg-transparent border border-[rgba(192,168,204,0.35)] text-lilac px-8 py-3 font-sans text-[0.72rem] tracking-[0.18em] uppercase cursor-pointer transition-all duration-200 hover:bg-lilac-deep hover:text-white hover:border-lilac-deep"
+                onclick="openPwModal()">🔑 Passwort eingeben
+        </button>
+    </div>
 </section>
 
 <!-- ZEITPLAN: REVEALED (nach 13.07.26) -->
-<section id="zeitplan-revealed" class="hidden bg-[rgba(20,8,5,0.88)] relative overflow-hidden px-6 py-16 md:px-16 md:py-24 before:content-[''] before:absolute before:inset-0 before:bg-[url('assets/img/stripe.png')] before:bg-[length:100vw_auto] before:bg-top before:opacity-[0.85] before:pointer-events-none after:content-[''] after:absolute after:inset-0 after:bg-[rgba(15,5,3,0.72)] after:pointer-events-none after:z-0">
-  <div class="relative z-[1] max-w-[1100px] mx-auto">
-    <p class="text-[0.68rem] tracking-[0.35em] uppercase mb-[0.6rem] font-medium inline-block bg-white/[0.82] px-[0.8rem] py-[0.2rem] rounded-[20px] text-lilac-deep [text-shadow:none]">Der erste Tag</p>
-    <h2 class="font-serif text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.02em] mb-14 text-brown [text-shadow:0_0_30px_rgba(255,255,255,1),0_0_60px_rgba(255,255,255,0.8)]"><em class="italic font-light text-lilac-deep [text-shadow:0_0_20px_rgba(255,255,255,1)]">Tag 1</em></h2>
-    <div>
-      <div class="flex flex-col gap-0">
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">16:00</div><div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Kamilla abholen</div><div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Webseite, Karte, Tasche - wer möchte kann dazu kommen, ansonsten Haupt-Treffpunkt am Flughafen 17:30 Uhr </div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">17:00</div><div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Abfahrt zum Flughafen</div><div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Treffpunkt spätestens 17:30 Uhr am Flughafen für ALLE </div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">00:30</div><div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Flug Ankunft</div><div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Option: kurzer Stopp am Flughafen für Mcs/KFC – weil Reisen hungrig macht </div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">02:00</div><div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Ankunft Unterkunft</div><div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Option: Essen zur Unterkunft bestellen. Dann: schlafen!</div></div></div>
-      </div>
-    </div>
-    <p class="text-[0.68rem] tracking-[0.35em] uppercase mb-[0.6rem] mt-16 md:mt-24 font-medium inline-block bg-white/[0.82] px-[0.8rem] py-[0.2rem] rounded-[20px] text-lilac-deep [text-shadow:none]">Der zweite Tag</p>
-    <h2 class="font-serif text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.02em] mb-14 text-brown [text-shadow:0_0_30px_rgba(255,255,255,1),0_0_60px_rgba(255,255,255,0.8)]"><em class="italic font-light text-lilac-deep [text-shadow:0_0_20px_rgba(255,255,255,1)]">Tag 2</em></h2>
-    <div>
-      <div class="flex flex-col gap-0">
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">09:00</div><div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Fertig machen</div><div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Alle sind um 9 Uhr fertig gemacht. Kamilla macht sich im anderen Zimmer fertig - alle anderen dekorieren ihr Zimmer & das Wohnzimmer</div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">10:30</div><div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Foto-Session</div><div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Fotos auf dem Bett und im dekorierten Wohnzimmer – solo von Kamilla und als Gruppe!</div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">11:30</div><div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Brunch @ Bottega</div><div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Losfahren und gemeinsam brunchen – natürlich mit Fotos!</div>
-        <div class="mt-4 rounded-[10px] overflow-hidden border border-white/[0.12] relative">
-          <iframe
-            class="block w-full h-[200px] md:h-[240px] border-0"
-            src="https://maps.google.com/maps?q=Bottega+Restaurant+Antalya+Turkey&output=embed&hl=de&z=16"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-          <div class="flex items-center gap-2 px-[0.9rem] py-[0.6rem] bg-white/[0.06] border-t border-white/[0.08]">
-            <span class="text-[0.9rem]">📍</span>
-            <span class="font-sans text-[0.72rem] tracking-[0.1em] uppercase text-white/60 font-medium">Bottega — Antalya</span>
-            <a class="ml-auto font-sans text-[0.65rem] tracking-[0.08em] uppercase text-lilac no-underline font-medium transition-colors duration-200 hover:text-white" href="https://maps.google.com/?q=Bottega+Antalya" target="_blank">In Maps öffnen →</a>
-          </div>
+<section id="zeitplan-revealed"
+         class="hidden bg-[rgba(20,8,5,0.88)] relative overflow-hidden px-6 py-16 md:px-16 md:py-24 before:content-[''] before:absolute before:inset-0 before:bg-[url('assets/img/stripe.png')] before:bg-[length:100vw_auto] before:bg-top before:opacity-[0.85] before:pointer-events-none after:content-[''] after:absolute after:inset-0 after:bg-[rgba(15,5,3,0.72)] after:pointer-events-none after:z-0">
+    <div class="relative z-[1] max-w-[1100px] mx-auto">
+        <p class="text-[0.68rem] tracking-[0.35em] uppercase mb-[0.6rem] font-medium inline-block bg-white/[0.82] px-[0.8rem] py-[0.2rem] rounded-[20px] text-lilac-deep [text-shadow:none]">
+            Der erste Tag</p>
+        <h2 class="font-serif text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.02em] mb-14 text-brown [text-shadow:0_0_30px_rgba(255,255,255,1),0_0_60px_rgba(255,255,255,0.8)]">
+            <em class="italic font-light text-lilac-deep [text-shadow:0_0_20px_rgba(255,255,255,1)]">Tag 1</em></h2>
+        <div>
+            <div class="flex flex-col gap-0">
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        16:00
+                    </div>
+                    <div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Kamilla abholen
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Webseite, Karte, Tasche - wer möchte kann dazu kommen, ansonsten Haupt-Treffpunkt am
+                            Flughafen 17:30 Uhr
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        17:00
+                    </div>
+                    <div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Abfahrt zum Flughafen
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Treffpunkt spätestens 17:30 Uhr am Flughafen für ALLE
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        00:30
+                    </div>
+                    <div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Flug Ankunft
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Option: kurzer Stopp am Flughafen für Mcs/KFC – weil Reisen hungrig macht
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        02:00
+                    </div>
+                    <div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Ankunft Unterkunft
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Option: Essen zur Unterkunft bestellen. Dann: schlafen!
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-</div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">14:00</div><div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Land of Legends</div><div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Fotos + Snacks (Eis uws.) + OPTIONAL: Bootstour</div>
-        <div class="mt-4 rounded-[10px] overflow-hidden border border-white/[0.12] relative">
-          <iframe
-            class="block w-full h-[200px] md:h-[240px] border-0"
-            src="https://maps.google.com/maps?q=Land+of+Legends+Kingdom+Hotel+Belek+Antalya&output=embed&hl=de&z=14"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-          <div class="flex items-center gap-2 px-[0.9rem] py-[0.6rem] bg-white/[0.06] border-t border-white/[0.08]">
-            <span class="text-[0.9rem]">📍</span>
-            <span class="font-sans text-[0.72rem] tracking-[0.1em] uppercase text-white/60 font-medium">Land of Legends — Belek, Antalya</span>
-            <a class="ml-auto font-sans text-[0.65rem] tracking-[0.08em] uppercase text-lilac no-underline font-medium transition-colors duration-200 hover:text-white" href="https://maps.google.com/?q=Land+of+Legends+Belek+Antalya" target="_blank">In Maps öffnen →</a>
-          </div>
+        <p class="text-[0.68rem] tracking-[0.35em] uppercase mb-[0.6rem] mt-16 md:mt-24 font-medium inline-block bg-white/[0.82] px-[0.8rem] py-[0.2rem] rounded-[20px] text-lilac-deep [text-shadow:none]">
+            Der zweite Tag</p>
+        <h2 class="font-serif text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.02em] mb-14 text-brown [text-shadow:0_0_30px_rgba(255,255,255,1),0_0_60px_rgba(255,255,255,0.8)]">
+            <em class="italic font-light text-lilac-deep [text-shadow:0_0_20px_rgba(255,255,255,1)]">Tag 2</em></h2>
+        <div>
+            <div class="flex flex-col gap-0">
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        09:00
+                    </div>
+                    <div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Fertig machen
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Alle sind um 9 Uhr fertig gemacht. Kamilla macht sich im anderen Zimmer fertig - alle
+                            anderen dekorieren ihr Zimmer & das Wohnzimmer
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        10:30
+                    </div>
+                    <div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Foto-Session
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Fotos auf dem Bett und im dekorierten Wohnzimmer – solo von Kamilla und als Gruppe!
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        11:30
+                    </div>
+                    <div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Brunch @ Bottega
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Losfahren und gemeinsam brunchen – natürlich mit Fotos!
+                        </div>
+                        <div class="mt-4 rounded-[10px] overflow-hidden border border-white/[0.12] relative">
+                            <iframe
+                                    class="block w-full h-[200px] md:h-[240px] border-0"
+                                    src="https://maps.google.com/maps?q=Bottega+Restaurant+Antalya+Turkey&output=embed&hl=de&z=16"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                            <div class="flex items-center gap-2 px-[0.9rem] py-[0.6rem] bg-white/[0.06] border-t border-white/[0.08]">
+                                <span class="text-[0.9rem]">📍</span>
+                                <span class="font-sans text-[0.72rem] tracking-[0.1em] uppercase text-white/60 font-medium">Bottega — Antalya</span>
+                                <a class="ml-auto font-sans text-[0.65rem] tracking-[0.08em] uppercase text-lilac no-underline font-medium transition-colors duration-200 hover:text-white"
+                                   href="https://maps.google.com/?q=Bottega+Antalya" target="_blank">In Maps öffnen
+                                    →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        14:00
+                    </div>
+                    <div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Land of Legends
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Fotos + Snacks (Eis uws.) + OPTIONAL: Bootstour
+                        </div>
+                        <div class="mt-4 rounded-[10px] overflow-hidden border border-white/[0.12] relative">
+                            <iframe
+                                    class="block w-full h-[200px] md:h-[240px] border-0"
+                                    src="https://maps.google.com/maps?q=Land+of+Legends+Kingdom+Hotel+Belek+Antalya&output=embed&hl=de&z=14"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                            <div class="flex items-center gap-2 px-[0.9rem] py-[0.6rem] bg-white/[0.06] border-t border-white/[0.08]">
+                                <span class="text-[0.9rem]">📍</span>
+                                <span class="font-sans text-[0.72rem] tracking-[0.1em] uppercase text-white/60 font-medium">Land of Legends — Belek, Antalya</span>
+                                <a class="ml-auto font-sans text-[0.65rem] tracking-[0.08em] uppercase text-lilac no-underline font-medium transition-colors duration-200 hover:text-white"
+                                   href="https://maps.google.com/?q=Land+of+Legends+Belek+Antalya" target="_blank">In
+                                    Maps öffnen →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        16:30
+                    </div>
+                    <div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Essen vor Ort
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            entweder Kochen in der Villa oder ein Restaurant in der Nähe
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        17:30
+                    </div>
+                    <div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Zurück zur Villa
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Gruppe 1 begleitet Kamilla zurück zur Villa und bereitet die Spiele vor. Gruppe 2 geht im
+                            Supermarkt einkaufen für Tag 3. OPTIONAL: Einkauf bestellen via APP und liefern lassen in
+                            die Villa
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        18:30
+                    </div>
+                    <div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Pyjama-Abend
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Schöne Pyjamas anziehen (am besten filmbar!) – Spiele &amp; Aktivitäten: Taschenanhänger
+                            DIY, Stadt-Land-Braut und mehr!
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-</div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">16:30</div><div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Essen vor Ort</div><div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">entweder Kochen in der Villa oder ein Restaurant in der Nähe</div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">17:30</div><div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Zurück zur Villa</div><div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Gruppe 1 begleitet Kamilla zurück zur Villa und bereitet die Spiele vor. Gruppe 2 geht im Supermarkt einkaufen für Tag 3. OPTIONAL: Einkauf bestellen via APP und liefern lassen in die Villa</div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(61,16,8,0.1)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-white/55 text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">18:30</div><div class="bg-white/50 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-cream before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-white [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Pyjama-Abend</div><div class="font-tanker text-[0.9rem] text-white/75 leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Schöne Pyjamas anziehen (am besten filmbar!) – Spiele &amp; Aktivitäten: Taschenanhänger DIY, Stadt-Land-Braut und mehr!</div></div></div>
-      </div>
     </div>
-  </div>
 </section>
 
 <!-- TAG 3 (nach Reveal) -->
 <div id="tag3-revealed" class="hidden">
-  <div id="tag3-wrap" class="relative overflow-hidden bg-lilac-soft px-12 py-24 before:content-[''] before:absolute before:inset-0 before:bg-[url('assets/img/flower.png')] before:bg-[length:100%_auto] before:bg-center before:opacity-[0.85] before:pointer-events-none before:bg-repeat-y after:content-[''] after:absolute after:inset-0 after:bg-[rgba(240,234,245,0.6)] after:pointer-events-none after:z-0">
-    <div class="relative z-[1] max-w-[1100px] mx-auto">
-      <p class="text-[0.68rem] tracking-[0.35em] uppercase mb-[0.6rem] font-medium text-lilac-deep">Der letzte Tag</p>
-      <h2 class="font-serif text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.02em] mb-14 text-lilac-deep"><em class="italic font-light">Tag 3</em></h2>
-      <div class="flex flex-col gap-0">
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">09:00</div><div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Morgenroutine</div><div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Alle sind um 9 Uhr fertig gemacht. Eine Gruppe dekoriert, die andere bereitet Frühstück vor und deckt den Tisch draußen schön. Am ersten Morgen dekorieren alle mit, damit wir schneller fertig werden!</div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">11:00</div><div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Fotos &amp; Frühstück</div><div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Erst Fotos vor der Deko, dann zusammen frühstücken ️</div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">12:00</div><div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Geschenke aufmachen</div><div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Danach: ab in den Pool! Spiele vom Vortag können hier nachgeholt werden </div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">15:00</div><div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Zusammen kochen</div><div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Nudeln mit verschiedenen Soßen – Tisch schön eindecken</div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">16:00</div><div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Essen</div><div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Genießen! Das letzte gemeinsame Essen </div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">17:00</div><div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Fertig machen zur Abreise</div><div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Abräumen, duschen, packen, letzte Fotos</div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">19:00</div><div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Zum Flughafen</div><div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Bis zum nächsten Mal! </div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">Gruppe 1</div><div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Einkaufen & Kochen</div><div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Reyhan, Hilal, Elif K.</div></div></div>
-        <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]"><div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">Gruppe 2</div><div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div><div class="pl-0"><div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">Deko & Entertainment</div><div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">Diana, Ece, Erva, Elif A. </div></div></div>
-      </div>
+    <div id="tag3-wrap"
+         class="relative overflow-hidden bg-lilac-soft px-12 py-24 before:content-[''] before:absolute before:inset-0 before:bg-[url('assets/img/flower.png')] before:bg-[length:100%_auto] before:bg-center before:opacity-[0.85] before:pointer-events-none before:bg-repeat-y after:content-[''] after:absolute after:inset-0 after:bg-[rgba(240,234,245,0.6)] after:pointer-events-none after:z-0">
+        <div class="relative z-[1] max-w-[1100px] mx-auto">
+            <p class="text-[0.68rem] tracking-[0.35em] uppercase mb-[0.6rem] font-medium text-lilac-deep">Der letzte
+                Tag</p>
+            <h2 class="font-serif text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.02em] mb-14 text-lilac-deep">
+                <em class="italic font-light">Tag 3</em></h2>
+            <div class="flex flex-col gap-0">
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        09:00
+                    </div>
+                    <div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Morgenroutine
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Alle sind um 9 Uhr fertig gemacht. Eine Gruppe dekoriert, die andere bereitet Frühstück vor
+                            und deckt den Tisch draußen schön. Am ersten Morgen dekorieren alle mit, damit wir schneller
+                            fertig werden!
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        11:00
+                    </div>
+                    <div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Fotos &amp; Frühstück
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Erst Fotos vor der Deko, dann zusammen frühstücken ️
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        12:00
+                    </div>
+                    <div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Geschenke aufmachen
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Danach: ab in den Pool! Spiele vom Vortag können hier nachgeholt werden
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        15:00
+                    </div>
+                    <div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Zusammen kochen
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Nudeln mit verschiedenen Soßen – Tisch schön eindecken
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        16:00
+                    </div>
+                    <div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Essen
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Genießen! Das letzte gemeinsame Essen
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        17:00
+                    </div>
+                    <div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Fertig machen zur Abreise
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Abräumen, duschen, packen, letzte Fotos
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        19:00
+                    </div>
+                    <div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Zum Flughafen
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Bis zum nächsten Mal!
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        Gruppe 1
+                    </div>
+                    <div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Einkaufen & Kochen
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Reyhan, Hilal, Elif K.
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-[80px_1px_1fr] md:grid-cols-[140px_1px_1fr] gap-x-[1.2rem] md:gap-x-10 gap-y-0 py-8 border-b border-[rgba(122,90,138,0.15)]">
+                    <div class="font-tanker text-[1.6rem] md:text-[2.8rem] font-normal text-lilac text-right leading-none pt-1 tracking-[0.1em] [text-shadow:none]">
+                        Gruppe 2
+                    </div>
+                    <div class="bg-lilac/40 relative before:content-[''] before:absolute before:w-2.5 before:h-2.5 before:rounded-full before:bg-lilac-deep before:top-[0.4rem] before:left-1/2 before:-translate-x-1/2"></div>
+                    <div class="pl-0">
+                        <div class="font-tanker text-[1.2rem] md:text-[1.8rem] font-normal text-lilac-deep [text-shadow:none] mb-[0.4rem] tracking-[0.05em] uppercase">
+                            Deko & Entertainment
+                        </div>
+                        <div class="font-tanker text-[0.9rem] text-[#6a4a7e] leading-[1.7] [text-shadow:none] font-normal tracking-[0.02em]">
+                            Diana, Ece, Erva, Elif A.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- MEMORIES -->
-<section id="memories" class="bg-white px-6 py-16 md:px-16 md:py-24 relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[url('assets/img/flower.png')] before:bg-[length:100%_auto] before:bg-top before:opacity-[0.08] before:pointer-events-none before:bg-repeat-y">
-  <div class="relative max-w-[1000px] mx-auto text-center">
-    <p class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out text-[0.68rem] tracking-[0.35em] uppercase text-lilac-deep mb-[0.6rem] font-medium">Unsere Momente</p>
-    <h2 class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out font-serif text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.02em] mb-14 text-brown">Erinnerungs<em class="italic font-light text-lilac-deep">galerie</em> 📸</h2>
-    <p class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out text-brown-light text-[0.85rem] leading-[1.7] mb-[25px]">
-      Lade hier deine Fotos & Videos vom Wochenende hoch und schaue dir die Momente der anderen Mädels an!
-    </p>
+<section id="memories"
+         class="bg-white px-6 py-16 md:px-16 md:py-24 relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[url('assets/img/flower.png')] before:bg-[length:100%_auto] before:bg-top before:opacity-[0.08] before:pointer-events-none before:bg-repeat-y">
+    <div class="relative max-w-[1000px] mx-auto text-center">
+        <p class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out text-[0.68rem] tracking-[0.35em] uppercase text-lilac-deep mb-[0.6rem] font-medium">
+            Unsere Momente</p>
+        <h2 class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out font-serif text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.02em] mb-14 text-brown">
+            Erinnerungs<em class="italic font-light text-lilac-deep">galerie</em> 📸</h2>
+        <p class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out text-brown-light text-[0.85rem] leading-[1.7] mb-[25px]">
+            Lade hier deine Fotos & Videos vom Wochenende hoch und schaue dir die Momente der anderen Mädels an!
+        </p>
 
-    <!-- UPLOAD BUTTON (Verlinkt direkt auf dein Google Formular) -->
-    <div class="inline-block mb-10">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfpHP0ffUb9uPJRS6l18BzMJC0l-28TSsgRW51ntTjVADo6ig/viewform"
-         target="_blank"
-         class="no-underline inline-block px-[30px] py-3 bg-brown text-cream rounded-[40px] font-bold font-sans text-[0.9rem] tracking-[0.05em] transition-all duration-300">
-        Fotos & Videos hochladen ✦
-      </a>
-    </div>
+        <!-- UPLOAD BUTTON (Verlinkt direkt auf dein Google Formular) -->
+        <div class="inline-block mb-10">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfpHP0ffUb9uPJRS6l18BzMJC0l-28TSsgRW51ntTjVADo6ig/viewform"
+               target="_blank"
+               class="no-underline inline-block px-[30px] py-3 bg-brown text-cream rounded-[40px] font-bold font-sans text-[0.9rem] tracking-[0.05em] transition-all duration-300">
+                Fotos & Videos hochladen ✦
+            </a>
+        </div>
 
-    <!-- GOOGLE DRIVE ORDNER EINBETTUNG (Korrigierter Link für die Kachel-Galerie) -->
-    <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out shadow-[0_10px_40px_rgba(61,16,8,0.12)] rounded-2xl overflow-hidden bg-white border border-cream-dark">
-      <iframe src="https://drive.google.com/embeddedfolderview?id=1EXJQVB8DQxyMMtgeQhpsc0RQLAQJVyMmVNJq01WD4T1BuedGWiwmj0_L2IzZ2lJflfOSJ0kb#grid" width="100%" height="600" class="border-0 block"></iframe>
-    </div>
+        <!-- GOOGLE DRIVE ORDNER EINBETTUNG (Korrigierter Link für die Kachel-Galerie) -->
+        <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out shadow-[0_10px_40px_rgba(61,16,8,0.12)] rounded-2xl overflow-hidden bg-white border border-cream-dark">
+            <iframe src="https://drive.google.com/embeddedfolderview?id=1EXJQVB8DQxyMMtgeQhpsc0RQLAQJVyMmVNJq01WD4T1BuedGWiwmj0_L2IzZ2lJflfOSJ0kb#grid"
+                    width="100%" height="600" class="border-0 block"></iframe>
+        </div>
 
-    <div id="mem-grid">
-      <!-- Das alte Raster wird nicht mehr benötigt, da das iFrame den Drive-Ordner live anzeigt -->
+        <div id="mem-grid">
+            <!-- Das alte Raster wird nicht mehr benötigt, da das iFrame den Drive-Ordner live anzeigt -->
+        </div>
     </div>
-  </div>
 </section>
 
 <!-- SPIELE -->
-<section id="spiele" class="hidden bg-brown px-6 py-16 md:px-16 md:py-24 relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[url('assets/img/flower.png')] before:bg-[length:100%_auto] before:bg-top before:opacity-[0.07] before:pointer-events-none before:bg-repeat-y">
-  <div class="relative max-w-[1100px] mx-auto">
-    <p class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out text-[0.68rem] tracking-[0.35em] uppercase mb-[0.6rem] font-medium text-lilac">Pyjama-Abend</p>
-    <h2 class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out font-serif text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.02em] mb-14 text-cream">Spiele &amp; <em class="italic font-light text-lilac-deep">Aktivitäten</em></h2>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-white/[0.08] border border-white/[0.08]">
-      <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid"><div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">01</div><span class="text-[1.6rem] mb-[0.8rem] block">💍</span><div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Stadt, Land, Braut 💍</div><div class="text-[0.8rem] text-white/45 leading-[1.6]"></div></div>
-      <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid"><div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">02</div><span class="text-[1.6rem] mb-[0.8rem] block">🎀</span><div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Anhänger gestalten 🎀</div><div class="text-[0.8rem] text-white/45 leading-[1.6]">Jede bastelt ihren eigenen Taschenanhänger als Erinnerung ans Wochenende</div></div>
-      <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid"><div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">03</div><span class="text-[1.6rem] mb-[0.8rem] block">🤔</span><div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Würde die Braut eher 🤔</div><div class="text-[0.8rem] text-white/45 leading-[1.6]">Wer kennt Kamilla am besten? Fragen zu Lieblingsessen, erstem Date, peinlichsten Momenten 😄</div></div>
-      <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid"><div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">04</div><span class="text-[1.6rem] mb-[0.8rem] block">🙊</span><div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Jemals oder niemals 🙊</div><div class="text-[0.8rem] text-white/45 leading-[1.6]"></div></div>
-      <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid"><div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">05</div><span class="text-[1.6rem] mb-[0.8rem] block">💑</span><div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Wie gut kennt der Bräutigam die Braut? 💑</div><div class="text-[0.8rem] text-white/45 leading-[1.6]"></div></div>
-      <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid"><div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">06</div><span class="text-[1.6rem] mb-[0.8rem] block">📝</span><div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Tipps für eine glückliche Ehe & eine Erinnerung mit der Braut 💌</div><div class="text-[0.8rem] text-white/45 leading-[1.6]"></div></div>
-      <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid"><div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">07</div><span class="text-[1.6rem] mb-[0.8rem] block">🎭</span><div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Tabu / Pantomime 🎭</div><div class="text-[0.8rem] text-white/45 leading-[1.6]"></div></div>
+<section id="spiele"
+         class="hidden bg-brown px-6 py-16 md:px-16 md:py-24 relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[url('assets/img/flower.png')] before:bg-[length:100%_auto] before:bg-top before:opacity-[0.07] before:pointer-events-none before:bg-repeat-y">
+    <div class="relative max-w-[1100px] mx-auto">
+        <p class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out text-[0.68rem] tracking-[0.35em] uppercase mb-[0.6rem] font-medium text-lilac">
+            Pyjama-Abend</p>
+        <h2 class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out font-serif text-[clamp(2.8rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-[-0.02em] mb-14 text-cream">
+            Spiele &amp; <em class="italic font-light text-lilac-deep">Aktivitäten</em></h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-white/[0.08] border border-white/[0.08]">
+            <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid">
+                <div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">01</div>
+                <span class="text-[1.6rem] mb-[0.8rem] block">💍</span>
+                <div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Stadt, Land, Braut 💍</div>
+                <div class="text-[0.8rem] text-white/45 leading-[1.6]"></div>
+            </div>
+            <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid">
+                <div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">02</div>
+                <span class="text-[1.6rem] mb-[0.8rem] block">🎀</span>
+                <div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Anhänger gestalten 🎀</div>
+                <div class="text-[0.8rem] text-white/45 leading-[1.6]">Jede bastelt ihren eigenen Taschenanhänger als
+                    Erinnerung ans Wochenende
+                </div>
+            </div>
+            <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid">
+                <div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">03</div>
+                <span class="text-[1.6rem] mb-[0.8rem] block">🤔</span>
+                <div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Würde die Braut eher 🤔</div>
+                <div class="text-[0.8rem] text-white/45 leading-[1.6]">Wer kennt Kamilla am besten? Fragen zu
+                    Lieblingsessen, erstem Date, peinlichsten Momenten 😄
+                </div>
+            </div>
+            <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid">
+                <div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">04</div>
+                <span class="text-[1.6rem] mb-[0.8rem] block">🙊</span>
+                <div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Jemals oder niemals 🙊</div>
+                <div class="text-[0.8rem] text-white/45 leading-[1.6]"></div>
+            </div>
+            <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid">
+                <div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">05</div>
+                <span class="text-[1.6rem] mb-[0.8rem] block">💑</span>
+                <div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Wie gut kennt der Bräutigam die
+                    Braut? 💑
+                </div>
+                <div class="text-[0.8rem] text-white/45 leading-[1.6]"></div>
+            </div>
+            <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid">
+                <div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">06</div>
+                <span class="text-[1.6rem] mb-[0.8rem] block">📝</span>
+                <div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Tipps für eine glückliche Ehe & eine
+                    Erinnerung mit der Braut 💌
+                </div>
+                <div class="text-[0.8rem] text-white/45 leading-[1.6]"></div>
+            </div>
+            <div class="fade-in opacity-0 translate-y-8 transition-[opacity,transform] duration-700 ease-in-out bg-brown p-8 hover:bg-brown-mid">
+                <div class="font-serif text-5xl font-bold text-white/[0.06] leading-none -mb-2">07</div>
+                <span class="text-[1.6rem] mb-[0.8rem] block">🎭</span>
+                <div class="font-serif text-[1.3rem] font-semibold text-cream mb-2">Tabu / Pantomime 🎭</div>
+                <div class="text-[0.8rem] text-white/45 leading-[1.6]"></div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <footer class="bg-black py-12 px-12 text-center">
-  <p class="font-serif text-[1.1rem] italic text-white/30">Für Kamilla 🌸✨</p>
+    <p class="font-serif text-[1.1rem] italic text-white/30">Für Kamilla 🌸✨</p>
 </footer>
 
 <script src="js/main.js" defer></script>
